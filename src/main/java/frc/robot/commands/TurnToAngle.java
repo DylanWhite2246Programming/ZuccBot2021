@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -25,6 +26,7 @@ public class TurnToAngle extends PIDCommand {
         output -> drive.driveLinear(0.0, 0.0 ,output));
       addRequirements(drive);
       getController().enableContinuousInput(-180 ,180);
+      getController().setTolerance(DriveConstants.kTurnToleranceDeg, DriveConstants.kTurnToleranceDegPerS);
       // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
