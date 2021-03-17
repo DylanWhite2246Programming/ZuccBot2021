@@ -22,7 +22,7 @@ public class TopShooterPIDSubsytem extends PIDSubsystem {
     private final WPI_VictorSPX m_motor = new WPI_VictorSPX(Ports.kTopShooterCANID);
     private final Encoder m_encoder = new Encoder(
         Ports.kTopShooterEncoderPort[0], 
-        Ports.kTopShooterEncoderPort[1], 
+        Ports.kTopShooterEncoderPort[1],  
         ShooterConstants.isTopEncoderReversed);
     private final SimpleMotorFeedforward m_Feedforward = 
         new SimpleMotorFeedforward(ShooterConstants.kTopKs, ShooterConstants.kTopkv);
