@@ -104,8 +104,8 @@ public final class Constants {
 		public static final double kPFrontRightVel = 0;
 		public static final double kPRearRightVel = 0;
 		public static final double kVisionTolerance = 1.5;
-		public static double kTurnToleranceDeg;
-		public static double kTurnToleranceDegPerS;
+		public static double kTurnToleranceDeg; //TODO CHANGE
+		public static double kTurnToleranceDegPerS; //TODO CHANGE
     }
     public static final class AutoConstants{
 
