@@ -147,6 +147,9 @@ public final class Constants {
         public static final double kDistanceToSpin3Times = 
             kWheelCircumfranceMeters*28;
     }
+    public static final class BeltConstants{
+        public static final boolean isInverted = false;
+    }
     public static final class ShooterConstants{
         public static final double kEncoderCPR = 8192;
         public static final boolean isTopEncoderReversed = true;
@@ -167,6 +170,8 @@ public final class Constants {
         public static final double kBottomDistancePerPulse = 1/kEncoderCPR/60;
         public static final double kTolerance = 50; //rpm
         public static final boolean VoltageComp = true;
+		public static final double kBottomMinimumVoltage = 2;//TODO CHANGE
+		public static double kTopMininmumVoltage;
         
         public static double RPMRequired(double distance, double wheeldiameterinch){
             return 0;

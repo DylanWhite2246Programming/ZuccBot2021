@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Constants.BeltConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.BottomShooterPIDSubsytem;
 import frc.robot.subsystems.DiskSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -35,6 +37,7 @@ public class RobotContainer {
   IntakeSubsystem m_Intake = new IntakeSubsystem();
   BottomShooterPIDSubsytem m_BottomShooter = new BottomShooterPIDSubsytem();
   TopShooterPIDSubsytem m_TopShooter = new TopShooterPIDSubsytem();
+  BeltSubsystem m_Belt = new BeltSubsystem();
 
   Joystick stick = new Joystick(OIConstants.kJoyPort);
   Joystick ctrlBoard0 = new Joystick(OIConstants.kBoardport);
@@ -47,9 +50,10 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new RunCommand(()->m_DriveTrain.OporatorDrive(
         -OIConstants.ex(stick.getX()), 
         OIConstants.ex(stick.getY()), 
-        .25*OIConstants.ex(stick.getTwist())), 
+        .4*OIConstants.ex(stick.getTwist())), 
         m_DriveTrain));
-    m_Intake.setDefaultCommand(new RunCommand(()->m_Intake.beltstop(), m_Intake));
+    m_Intake.setDefaultCommand(new RunCommand(()->m_Intake.stop(), m_Intake));
+    m_Belt.setDefaultCommand(new RunCommand(()->m_Belt.stop(), m_Belt));
     m_BottomShooter.setDefaultCommand(new RunCommand(()->m_BottomShooter.disable(), m_BottomShooter));
     m_TopShooter.setDefaultCommand(new RunCommand(()->m_TopShooter.disable(), m_TopShooter));
     m_DiskSpinner.setDefaultCommand(new RunCommand(()->m_DiskSpinner.stop(), m_DiskSpinner));
@@ -105,14 +109,14 @@ public class RobotContainer {
     final Button userButton = new Button(RobotController::getUserButton);
 
     //CustomSwitch3.whileHeld(()->m_Shooter.armShooter(), m_Shooter);
-    Custom5.whileHeld(()->m_Intake.intakezucc(),m_Intake);
-    Custom1.whileHeld(()->m_Intake.intakeclear(),m_Intake);
-    Custom3.whileHeld(()->m_Intake.beltforward(),m_Intake);
-    Custom7.whileHeld(()->m_Intake.beltreverse(),m_Intake);
+    Custom5.whileHeld(()->m_Intake.forward(),m_Intake);
+    Custom1.whileHeld(()->m_Intake.reverse(),m_Intake);
+    Custom3.whileHeld(()->m_Belt.forward(),m_Belt);
+    Custom7.whileHeld(()->m_Belt.reverse(),m_Belt);
     customSwitch4.whileHeld(()->m_BottomShooter.autoSpin(), m_BottomShooter);
     customSwitch4.whileHeld(()->m_TopShooter.autoSpin(), m_TopShooter);
-    CustomSwitch3.whileHeld(()->m_BottomShooter.tableMode(true), m_BottomShooter);
-    CustomSwitch3.whileHeld(()->m_TopShooter.tableMode(true), m_TopShooter);
+    CustomSwitch3.whileHeld(()->m_BottomShooter.tableMode(), m_BottomShooter);
+    CustomSwitch3.whileHeld(()->m_TopShooter.tableMode(), m_TopShooter);
     
   }
 

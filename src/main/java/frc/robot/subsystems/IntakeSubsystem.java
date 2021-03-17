@@ -13,7 +13,6 @@ import frc.robot.Constants.Ports;
 
 public class IntakeSubsystem extends SubsystemBase {
   private final VictorSP intake = new VictorSP(Ports.kIntakePort);
-  private final VictorSP belt = new VictorSP(Ports.kBeltPort);
   private final DoubleSolenoid piston = new DoubleSolenoid(
     Ports.kPCMCANID, Ports.kIntakePistonPorts[0], Ports.kIntakePistonPorts[1]);
   /** Creates a new IntakeSubsystem. */
@@ -24,22 +23,13 @@ public class IntakeSubsystem extends SubsystemBase {
   public void pistonstop(){piston.set(Value.kOff);}
   public void toggle(){piston.toggle();}
 
-  public void intakezucc(){
+  public void forward(){
     intake.set(MotorSpeeds.intakeSpeed);
   }
-  public void intakeclear(){
+  public void reverse(){
     intake.set(-MotorSpeeds.intakeSpeed);
   }
-  public void intakestop(){intake.stopMotor();}
-  public void beltforward(){
-    belt.set(MotorSpeeds.beltSpeed);
-  }
-  public void beltreverse(){
-    belt.set(-MotorSpeeds.beltSpeed);
-  }
-  public void beltstop(){
-    belt.stopMotor();
-  }
+  public void stop(){intake.stopMotor();}
 
   @Override
   public void periodic() {

@@ -9,18 +9,14 @@ import org.photonvision.PhotonPipelineResult;
 import org.photonvision.PhotonTrackedTarget;
 import org.photonvision.PhotonUtils;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.Ports;
 import frc.robot.Constants.VisionConstants;
-/*
+
 public class VisionSubsystem extends SubsystemBase {
   private static final PhotonCamera goalCam = new PhotonCamera("Goal Cam");
   private static final PhotonCamera ballCam = new PhotonCamera("Ball Cam");
-  private static final Solenoid ringlight = 
-    new Solenoid(Ports.kPCMCANID, Ports.kRingLightPort);
   public VisionSubsystem() {}
 
   public PhotonPipelineResult goalCamResults(){
@@ -47,11 +43,8 @@ public class VisionSubsystem extends SubsystemBase {
       return ballCamResults().getBestTarget();
     }
     
-  public void ringLightToggle(boolean toggle){
-    ringlight.set(toggle);
-  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-}*/
+}
