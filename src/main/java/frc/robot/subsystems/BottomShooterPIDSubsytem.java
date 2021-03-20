@@ -33,12 +33,11 @@ public class BottomShooterPIDSubsytem extends PIDSubsystem {
   public BottomShooterPIDSubsytem(){
       super(new PIDController(ShooterConstants.kBottomKp, 0, ShooterConstants.kBottomKd));
       getController().setTolerance(ShooterConstants.kTolerance);
-      m_encoder.setDistancePerPulse(1/ShooterConstants.kEncoderCPR/60);
+      m_encoder.setDistancePerPulse(ShooterConstants.kBottomDistancePerPulse);
       m_motor.setInverted(ShooterConstants.isBottomMotorInverted);
-      setSetpoint(5000);
   }
   public boolean atSetpoint(){return getController().atSetpoint();}
-  public void autoSpin(){enable();}
+  public void autoSpin(){super.enable();}
   public void manual(double value){m_motor.set(value);}
   public void tableMode(boolean enable){if(enable){manual(value.getDouble(0));}else{m_motor.stopMotor();}}
   @Override
@@ -48,12 +47,14 @@ public class BottomShooterPIDSubsytem extends PIDSubsystem {
 
   @Override
   public double getMeasurement(){
-      return m_encoder.getRate();
+      return m_encoder.getRate()*60;
   }
   @Override
   public void periodic(){
+      super.periodic();
       Shuffleboard.update();
       SmartDashboard.putNumber("Bottom Shooter RPM", getMeasurement());
-    //setSetpoint(ShooterConstants.RPMRequired(m_vision.getDistanceToGoalFeet(), ShooterConstants.kBottomWheelDiameter));
+        super.setSetpoint(value.getDouble(0));
+      //setSetpoint(ShooterConstants.RPMRequired(m_vision.getDistanceToGoalFeet(), ShooterConstants.kBottomWheelDiameter));
   }
 }

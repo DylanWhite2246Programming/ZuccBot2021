@@ -149,22 +149,22 @@ public final class Constants {
     }
     public static final class ShooterConstants{
         public static final double kEncoderCPR = 8192;
-        public static final boolean isTopEncoderReversed = true;
+        public static final boolean isTopEncoderReversed = false;
         public static final boolean isTopMotorInverted = false;
-        public static final double kTopKs = 1, kTopkv = 1;
-        public static final double kTopKp = 1, kTopKd = .1;
+        public static final double kTopKs = 2.06, kTopkv = .86;
+        public static final double kTopKp = 0.0648, kTopKd = 0;
         public static final TrapezoidProfile.Constraints kTopConstraints = 
             new TrapezoidProfile.Constraints(4500, 500); //Todo change
         public static final double kTopWheelDiameter = 2;
-        public static final double kTopDistancePerPulse = 1/kEncoderCPR/60;
-        public static final boolean isBottomEncoderReversed = false;
-        public static final boolean isBottomMotorInverted = true;
-        public static final double kBottomKs = 1, kBottomkv = 1;
-        public static final double kBottomKp = 1, kBottomKd = .1;
+        public static final double kTopDistancePerPulse = 1/kEncoderCPR;
+        public static final boolean isBottomEncoderReversed = true;
+        public static final boolean isBottomMotorInverted = false;
+        public static final double kBottomKs = 1.94, kBottomkv = 2.61;
+        public static final double kBottomKp = 0.0648, kBottomKd = 0;
         public static final TrapezoidProfile.Constraints kBottomConstraints = 
             new TrapezoidProfile.Constraints(4500, 500); //Todo change
         public static final double kBottomWheelDiameter = 4;
-        public static final double kBottomDistancePerPulse = 1/kEncoderCPR/60;
+        public static final double kBottomDistancePerPulse = 1/kEncoderCPR;
         public static final double kTolerance = 50; //rpm
         public static final boolean VoltageComp = true;
         

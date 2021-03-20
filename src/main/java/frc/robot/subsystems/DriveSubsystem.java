@@ -32,6 +32,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final MecanumDrive m_drive = new MecanumDrive(m_frontLeft, m_frontRight, m_rearLeft, m_rearRight);
   private final PIDController m_AcellerationContoller = new PIDController(OIConstants.kP, 0, OIConstants.kD);
+  private final PIDController m_straight = new PIDController(1,0,.1); 
   private static double xOutput, yOutput, rotOutput;
   private final Encoder m_frontLeftEncoder = new Encoder(
     Ports.kFrontLeftEncoderPort[0], 
@@ -85,11 +86,17 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.driveCartesian(x, y, rot);
   }
   public void OporatorDrive(double x, double y, double rot){
-    m_drive.driveCartesian(
+    if(Math.abs(x)<OIConstants.deadzone&&Math.abs(rot)<OIConstants.deadzone){
+      drivestraight(y);
+    }
+      else{m_drive.driveCartesian(
       x, 
       y, 
       rot, 
-      -navx.getAngle());
+      -navx.getAngle());}
+  }
+  public void drivestraight(double mag){
+    driveLinear(0, mag, m_straight.calculate(getTurnRate(), 0));
   }
   public void advancedDriveMode(double xInput, double yInput, double rotInput){
     xOutput= m_AcellerationContoller.calculate(xOutput, OIConstants.ex(xInput));

@@ -47,7 +47,7 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new RunCommand(()->m_DriveTrain.OporatorDrive(
         -OIConstants.ex(stick.getX()), 
         OIConstants.ex(stick.getY()), 
-        .25*OIConstants.ex(stick.getTwist())), 
+        .5*OIConstants.ex(stick.getTwist())), 
         m_DriveTrain));
     m_Intake.setDefaultCommand(new RunCommand(()->m_Intake.beltstop(), m_Intake));
     m_BottomShooter.setDefaultCommand(new RunCommand(()->m_BottomShooter.disable(), m_BottomShooter));
